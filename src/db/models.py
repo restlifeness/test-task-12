@@ -62,6 +62,8 @@ class Post(BaseModel):
     title = Column(String(50), nullable=False)
     content = Column(Text, nullable=False)
 
+    topic = Column(String(50), nullable=True)
+
     likes = Column(Integer, default=0)
 
     author_id = Column(Integer, ForeignKey("users.id"))
