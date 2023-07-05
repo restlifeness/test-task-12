@@ -2,7 +2,7 @@ import uvicorn
 
 from fastapi import FastAPI
 
-from routes import auth_router, user_router
+from routes import auth_router, user_router, posts_router
 
 from core.settings import get_settings
 
@@ -12,6 +12,7 @@ app = FastAPI(debug=settings.DEBUG)
 
 app.include_router(auth_router)
 app.include_router(user_router)
+app.include_router(posts_router)
 
 
 def main() -> None:

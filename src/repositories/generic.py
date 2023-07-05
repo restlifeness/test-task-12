@@ -84,7 +84,7 @@ class GenericRepo(Generic[T]):
         :param kwargs: The keyword arguments to use for filtering the objects.
         :return: A list of objects that match the filter criteria.
         """
-        offset = (page - 1) * per_page
+        offset = (page) * per_page
         filters = [getattr(self.model, k) == v for k, v in kwargs.items()]
         query = select(self.model).where(and_(*filters)).limit(per_page).offset(offset)
         result = await self.session.execute(query)

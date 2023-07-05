@@ -55,3 +55,4 @@ class UserService:
             hashed_password=hashed_password,
         )
         return user
+
