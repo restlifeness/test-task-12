@@ -68,3 +68,17 @@ class Post(BaseModel):
 
     author_id = Column(Integer, ForeignKey("users.id"))
     author = relationship("User", backref="posts")
+
+
+class UserLike(BaseModel):
+    __tablename__ = "user_likes"
+    """
+    UserLike model
+
+    Attributes:
+        user_id (int): ID of user who liked post
+        post_id (int): ID of post that was liked
+    """
+
+    user_id = Column(Integer, ForeignKey("users.id"))
+    post_id = Column(Integer, ForeignKey("posts.id"))

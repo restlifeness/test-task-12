@@ -89,3 +89,17 @@ async def delete_post(
             status_code=status.HTTP_404_NOT_FOUND,
             detail='Post not found or you are not the author',
         )
+
+
+@posts_router.post('/posts/{post_id}/like', response_model=ResponseDetails)
+async def like_post(
+    post_id: int,
+    user: Annotated[User, Depends(get_user_by_token)],
+    post_service: Annotated[PostService, Depends()],
+) -> ResponseDetails:
+    """ Like post """
+    await post_service.like_post(post_id, user.id)
+    return ResponseDetails(
+        success=True,
+        details='Post liked successfully',
+    )

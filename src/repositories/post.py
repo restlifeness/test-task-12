@@ -108,3 +108,15 @@ class PostRepo(GenericRepo[Post]):
         await self.session.commit()
 
         return result.rowcount > 0
+
+    async def set_likes(self, post_id: int, likes: int = 0) -> None:
+        """
+        Add likes of post.
+
+        :param post_id: Post id.
+        """
+        stmt = update(self.model).where(self.model.id == post_id).values(
+            likes=likes
+        )
+        await self.session.execute(stmt)
+        await self.session.commit()
