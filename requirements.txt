@@ -4,9 +4,13 @@ Werkzeug>=2.3.6
 pyjwt>=2.7.0
 uvicorn>=0.22.0
 
+# Cache
+redis>=5.0.0rc1
+
 # Utils
 python-dotenv>=1.0.0
 python-multipart>=0.0.6
+ujson>=5.8.0
 
 
 # Database

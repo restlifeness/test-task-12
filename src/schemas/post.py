@@ -8,9 +8,9 @@ from .user import UserOut
 
 class BasePost(BaseModel):
     """ Base post schema. """
-    title: str = Field(..., example='My Post')
+    title: str = Field(..., example='My Post', max_length=50)
     content: str = Field(..., example='This is my post content.')
-    topic: Optional[str] = Field(None, example='My Subject')
+    topic: Optional[str] = Field(None, example='My Subject', max_length=50)
 
 
 class PostCreate(BasePost):

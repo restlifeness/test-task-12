@@ -1,18 +1,29 @@
-version: '3.8'
-
+version: "3.9"
 services:
-  postgres:
-    image: postgres:latest
+  db:
+    image: postgres
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "${POSTGRES_PORT}:5432"
-
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
   redis:
-    image: redis:latest
+    image: redis
     restart: always
     ports:
-      - "${REDIS_PORT}:6379"
+      - "${REDIS_PORT}:${REDIS_PORT}"
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/app
+    env_file:
+      - .env
